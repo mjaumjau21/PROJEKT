@@ -1,0 +1,13 @@
+.search {
+  padding: 1.25rem 0;
+}
+
+.search > input {
+  font-size: 0.75rem;
+  font-weight: 400;
+  height: 1.25rem;
+  width: 75%;
+  padding: 0.5rem;
+  border: 1px solid #f0f0f0;
+  border-radius: 0.3125rem; 
+}
