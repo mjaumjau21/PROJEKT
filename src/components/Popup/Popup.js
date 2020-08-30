@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './Popup.module.css';
+import PropTypes from 'prop-types';
 
-function Popup({ selected, closePopup }) {
+function Popup({ selected, closePopup ,addFavorite,props }) {
 	return (
 		<div className={styles.popup}>
 			<div className={styles.content}>
@@ -12,6 +13,8 @@ function Popup({ selected, closePopup }) {
 					<p>{selected.Plot}</p>
 				</div>
 				<button className={styles.close} onClick={event =>  window.location.href=`https://www.imdb.com/title/${selected.imdbID}`}>View</button>
+				<button className={styles.close} onClick={() => props.addFavorite(props.result.id)}>Make favorite
+				</button>
 				<button className={styles.close} onClick={closePopup}>Close</button>
 			</div>
 		</div>
