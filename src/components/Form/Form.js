@@ -24,7 +24,7 @@ export default class extends React.Component {
         	style={{width: '70%', height: '30px' , border: 'none'}}
       	/>
     	</div>
-    	<input type="button" value="Submit" className="btn btn--submit" onClick={this.handleSubmit} />
+    	<input type="button" value="Submit" className="btn btn--submit" onClick="alert('Baca gresku pa bolje alert nego da puke kod')" />
   	</form>
 	)
   }

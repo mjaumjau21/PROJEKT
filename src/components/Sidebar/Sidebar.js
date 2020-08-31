@@ -11,7 +11,7 @@ import Form from '../Form/Form';
 const Sidebar = ({handleInput,search} , props ,handleSubmit, handleChange) => {
   return (
     <aside className={styles.sidebar}>
-      <h4 className={styles.title}>Search movie</h4>
+      <h4 className={styles.title}>Unesi ime filma </h4>
 
       <Search handleInput={handleInput} search={search}/>
       <hr></hr>

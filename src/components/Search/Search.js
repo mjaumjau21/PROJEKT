@@ -7,7 +7,7 @@ const Sidebar = ({handleInput,search}) => {
     <div className={styles.search}>
       <input
         type="text"
-        placeholder="Search . . ."
+        placeholder="Traži . . ."
         onChange={handleInput}
         onKeyPress={search}
       />
