@@ -13,7 +13,7 @@ function Popup({ selected, closePopup ,addFavorite,props }) {
 					<p>{selected.Plot}</p>
 				</div>
 				<button className={styles.close} onClick={event =>  window.location.href=`https://www.imdb.com/title/${selected.imdbID}`}>View</button>
-				<button className={styles.close} onClick={() => props.addFavorite(props.result.id)}>Make favorite
+				<button className={styles.close} onClick={() => addFavorite(selected.id)}>Make favorite
 				</button>
 				<button className={styles.close} onClick={closePopup}>Close</button>
 			</div>

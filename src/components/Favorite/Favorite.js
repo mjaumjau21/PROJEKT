@@ -5,11 +5,13 @@ import Results from '../Results/Results'
 import PropTypes from 'proptypes'
 
 
-const Favorite = (props) => {
+const Favorite = (props,{selected},result,results) => {
     return (
         <div>
-             <h4 className={styles.title}>Favorite users</h4>
-        
+             <h4 className={styles.title}>Favorite Movie</h4>
+             <section className={styles.results}>
+			
+		</section>
         </div>
     )
 }

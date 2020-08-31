@@ -58,12 +58,12 @@ function App() {
 
       console.log(result);
      });
-     if (this.state.favorite.some(result => result.id === id)) {
+     if (state.favorite.some(result => result.id === id)) {
       this.setState(prevState => ({
         favorite: prevState.favorite.filter(result => result.id !== id),
       }));
     } else {
-      this.setState(prevState => ({
+      setState(prevState => ({
         favorite: prevState.favorite.concat(prevState.result.find(result => result.id === id)),
       }));
     }
@@ -72,8 +72,28 @@ function App() {
   
   const onClearArray = () => {
     setState(prevState => {
-      return { ...prevState, results: []}
+      return { ...prevState, results: [] }
     });
+  };
+
+  const sortByRating = ({Result}) => {
+    
+    const results = [].concat(state.results)
+    results.sort((a,b) => a.imdbRating > b.imdbRating ? 1: -1).map(result =>(
+  <div key={result.imdbID}>result={result}</div>))
+  setState(prevState => {
+    return { ...prevState, results: results }
+  });
+  };
+
+  const sortByDate = ({Result}) => {
+    
+    const results = [].concat(state.results)
+    results.sort((a,b) => a.Year > b.Year ? 1: -1).map(result =>(
+  <div key={result.imdbID}>result={result}</div>))
+  setState(prevState => {
+    return { ...prevState, results: results }
+  });
   };
 
   const closePopup = () => {
@@ -82,22 +102,22 @@ function App() {
     });
   }
 
+
+  
   
     return (
       <div className={styles.container}>
         <Header />
         <div>
-        <button type="button" onClick={onClearArray}>
-          Clear Array
-        </button>
+        
         </div>
         <div className={styles.containerFlex}>
           <Sidebar handleInput={handleInput} search={search} />
           <Results results={state.results} openPopup={openPopup} />
-          <DropDown />
+          <DropDown onClearArray={onClearArray} sortByRating={sortByRating} sortByDate={sortByDate} />
 
         
-          {(typeof state.selected.Title != "undefined") ? <Popup selected={state.selected} closePopup={closePopup} /> : false}
+          {(typeof state.selected.Title != "undefined") ? <Popup selected={state.selected} closePopup={closePopup} addFavorite={addFavorite} /> : false}
           
         </div>
       </div>
