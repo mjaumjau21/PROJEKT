@@ -6,14 +6,16 @@ import axios from 'axios';
 import Results from '../Results/Results'
 import Popup from '../Popup/Popup';
 import DropDown from '../DropDown/DropDown';
+import PropTypes from 'prop-types';
+
 
 
 function App() {
   const [state, setState] = useState({
     s: "",
     results: [],
-    favorite: [{
-      "results": [{
+    favorites: [{
+      "resultss": [{
           "Title":"Guardians of the Galaxy Vol. 2",
           "Poster":"https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"    }],
         
@@ -50,7 +52,7 @@ function App() {
       let result = data;
 
       console.log(result);
-
+      
       setState(prevState => {
         return { ...prevState, selected: result }
       });
@@ -106,23 +108,69 @@ function App() {
       return { ...prevState, selected: {} }
     });
   }
-
-
   
+  const addToFav = id => {
+    axios(apiurl + "&i=" + id).then(({ data }) => {
+      let result = data;
+
+      console.log(result);
+
+      setState(prevState => {
+        return { ...prevState, selected: result }
+      });
+    });
+  }
+
+  const zeljeniFilm = id => {
+    axios(apiurl + "&i=" + id).then(({ data }) => {
+      let result = data;
+
+      console.log(result);
+
+      setState(prevState => {
+        return { ...prevState, selected: result }
+      });
+    });
+  }
+
+  const odabraniFilm = id => {
+    axios(apiurl + "&i=" + id).then(({ data }) => {
+      let result = data;
+
+      console.log(result);
+      console.log(state.favorites);
+      
+      setState(prevState => {
+        return { ...prevState, favorites: result }
+      });
+    });
+  }
+  const renderItem = ({ item, index }) => {
+    return (
+      <img
+        title={item.Title}
+
+      />
+    );
+  };
+
+ 
   
     return (
+       
       <div className={styles.container}>
         <Header />
         <div>
         
         </div>
         <div className={styles.containerFlex}>
-          <Sidebar handleInput={handleInput} search={search} />
-          <Results results={state.results} openPopup={openPopup} />
+          <Sidebar favorites={state.favorites}  handleInput={handleInput} search={search} />
+          <Results  results={state.results}  openPopup={openPopup} odabraniFilm={odabraniFilm}  />
           <DropDown onClearArray={onClearArray} sortByRating={sortByRating} sortByDate={sortByDate} />
-
+          <div >
+                   </div>
         
-          {(typeof state.selected.Title != "undefined") ? <Popup selected={state.selected} closePopup={closePopup} addFavorite={addFavorite} /> : false}
+          {(typeof state.selected.Title != "undefined") ? <Popup selected={state.selected} closePopup={closePopup} odabraniFilm={odabraniFilm}/> : false}
           
         </div>
       </div>

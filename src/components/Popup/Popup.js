@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from './Popup.module.css';
 import PropTypes from 'prop-types';
+import Favorite from '../Favorite/Favorite';
 
-function Popup({ selected, closePopup ,addFavorite,props }) {
+function Popup({ selected, closePopup ,props,odabraniFilm }) {
 	return (
 		<div className={styles.popup}>
 			<div className={styles.content}>
@@ -13,7 +14,7 @@ function Popup({ selected, closePopup ,addFavorite,props }) {
 					<p>{selected.Plot}</p>
 				</div>
 				<button className={styles.close} onClick={event =>  window.location.href=`https://www.imdb.com/title/${selected.imdbID}`}>View</button>
-				<button className={styles.close} onClick={() => addFavorite(selected.id)}>Make favorite
+				<button className={styles.close} onClick={() => odabraniFilm(selected.imdbID)}>Make favorite
 				</button>
 				<button className={styles.close} onClick={closePopup}>Close</button>
 			</div>
