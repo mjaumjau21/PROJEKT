@@ -2,8 +2,13 @@ import React from 'react'
 import styles from './Popup.module.css';
 import PropTypes from 'prop-types';
 import Favorite from '../Favorite/Favorite';
+import { removeCard, bookmarkCard } from '../../redux/actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-function Popup({ selected, closePopup ,props,odabraniFilm }) {
+
+
+function Popup({ selected, closePopup ,odabraniFilm },props) {
 	return (
 		<div className={styles.popup}>
 			<div className={styles.content}>
@@ -16,10 +21,29 @@ function Popup({ selected, closePopup ,props,odabraniFilm }) {
 				<button className={styles.close} onClick={event =>  window.location.href=`https://www.imdb.com/title/${selected.imdbID}`}>View</button>
 				<button className={styles.close} onClick={() => odabraniFilm(selected.imdbID)}>Make favorite
 				</button>
+				<button className={styles.favoriteBttn} onClick={() => this.props.action.bookmarkCard(selected.imdbID)}>&#9734;</button>
+
 				<button className={styles.close} onClick={closePopup}>Close</button>
 			</div>
 		</div>
 	)
 }
 
-export default Popup
+function mapDispatchToProps(dispatch) {
+	return {
+	  actions: bindActionCreators(
+		{
+		  removeCard,
+		  bookmarkCard
+		},
+		dispatch
+	  )
+	};
+  }
+
+  
+  
+  export default connect(
+	null,
+	mapDispatchToProps
+  )(Popup);

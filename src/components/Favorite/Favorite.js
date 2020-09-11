@@ -1,25 +1,17 @@
 import React from 'react'
-import styles from './Favorite.module.css'
+import styles from './Favorite.module.css';
 import Result from '../Result/Result'
-import Results from '../Results/Results'
-import PropTypes from 'proptypes'
-import cardFav from '../cardFav/cardFav'
+import PropTypes from 'prop-types';
 
-
-const Favorite = (props) => {
-    return (
-        <div>
-             <h4 className={styles.title}>Najdraži filmovi</h4>
-             <section className={styles.results}>
-          
-            
+function Favorite ({favorite},props) {
+	return (
+		<section className={styles.results}>
+			<h2>Najdrazi filmovi</h2>
+			{props.cards.map((card) => (
+        <img key={card.id} src={card.avatar_url} className={styles.avatar} alt="avatar" />
+      ))}
 		</section>
-        </div>
-    )
+	)
 }
-Favorite.propTypes = {
-    favorite: PropTypes.array,
-  }
-
 
 export default Favorite

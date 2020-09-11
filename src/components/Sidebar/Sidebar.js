@@ -7,18 +7,21 @@ import proptypes from 'proptypes';
 import Form from '../Form/Form';
 import cardFav from '../cardFav/cardFav'
 import Result from '../Result/Result';
+import Results from '../Results/Results';
+import EList from "../EList/EList"
 
 
 
 const Sidebar = ({handleInput,search,results} , props ,handleSubmit, handleChange,favorites) => {
+  
   return (
     <aside className={styles.sidebar}>
       <h4 className={styles.title}>Unesi ime filma </h4>
 
       <Search handleInput={handleInput} search={search} />
       <hr></hr>
-      <Favorite favorite={props.favorites} onClick={() => console.log()}/>
-     
+      
+      <EList></EList>
       <hr></hr>
       <h1 className={styles.title}>Unesi email za primanje obajesti o prikazivanju omiljenih filmova u kinu</h1>
       <Form handleSubmit={handleSubmit} handleChange={handleChange}/>
@@ -26,6 +29,10 @@ const Sidebar = ({handleInput,search,results} , props ,handleSubmit, handleChang
       
     </aside>
   );
+}
+
+Sidebar.prototype={
+  cards: PropTypes.array,
 }
 
 

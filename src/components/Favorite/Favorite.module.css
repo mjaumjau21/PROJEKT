@@ -1,14 +1,4 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-top: 1px solid #3e3e43;
-  }
-  
-  .title {
-    margin: 1.25rem 0;    
-  }
-  .results {
+.results {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 0px -15px;
@@ -41,22 +31,3 @@
 	background: #FFF;
 	color: #223343;
 }
-
-.container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border-top: 1px solid #3e3e43;
-  }
-  
-  .title {
-	margin: 1.25rem 0;    
-  }
-  
-  .avatar {
-	width: 4.5rem;
-	margin-bottom: 1.25rem;
-	border-radius: 50%;
-  }
-
-  
