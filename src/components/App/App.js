@@ -162,10 +162,8 @@ function App() {
       console.log(result);
       
       
-      setState(prevState => {
-        return { ...prevState, favorites: result }
-      });
-    });
+   
+       }).put(`http://localhost:5000/card`,id);
   }
   
   
@@ -181,7 +179,7 @@ function App() {
         </div>
         <div className={styles.containerFlex}>
           <Sidebar   handleInput={handleInput} search={search} />
-          <Results  cards={state.bookmarkedCards} results={state.results}  openPopup={openPopup} odabraniFilm={odabraniFilm}  />
+          <Results results={state.results}  openPopup={openPopup} odabraniFilm={odabraniFilm}  />
           <DropDown onClearArray={onClearArray} sortByRating={sortByRating} sortByDate={sortByDate} />
           <div >
           

@@ -20,7 +20,7 @@ const Sidebar = ({handleInput,search,results} , props ,handleSubmit, handleChang
 
       <Search handleInput={handleInput} search={search} />
       <hr></hr>
-      
+      <Favorite cards={props.cards}/>
       <EList></EList>
       <hr></hr>
       <h1 className={styles.title}>Unesi email za primanje obajesti o prikazivanju omiljenih filmova u kinu</h1>
