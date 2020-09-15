@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useState } from 'react';
 import styles from './App.module.css';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
@@ -6,11 +6,7 @@ import axios from 'axios';
 import Results from '../Results/Results'
 import Popup from '../Popup/Popup';
 import DropDown from '../DropDown/DropDown';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getCards } from "../../services";
-import { addCards} from "../../redux/actions"
-import {useDispatch } from 'react-redux';
 
 
 
@@ -19,6 +15,7 @@ function App() {
   const [state, setState] = useState({
     s: "",
     results: [],
+    result:[],
     favorites: [
       {
         "Title":"Guardians of the Galaxy Vol. 2",
@@ -66,38 +63,10 @@ function App() {
       });
     });
   }
-  const dispatch = useDispatch();
 
-  const fetchData = async () => {
-    const json = await getCards();
-    dispatch(addCards(json));
-
-  };
-
-
-  useEffect(() => {
-    
-  });
   
 
 
-  const addFavorite = id => {
-    axios(apiurl + "&i=" + id).then(({ data }) => {
-      let result = data;
-
-      console.log(result);
-     });
-     if (state.favorite.some(result => result.id === id)) {
-      this.setState(prevState => ({
-        favorite: prevState.favorite.filter(result => result.id !== id),
-      }));
-    } else {
-      setState(prevState => ({
-        favorite: prevState.favorite.concat(prevState.result.find(result => result.id === id)),
-      }));
-    }
-    
-  }
   
   const onClearArray = () => {
     setState(prevState => {
@@ -131,29 +100,7 @@ function App() {
     });
   }
   
-  const addToFav = id => {
-    axios(apiurl + "&i=" + id).then(({ data }) => {
-      let result = data;
 
-      console.log(result);
-
-      setState(prevState => {
-        return { ...prevState, selected: result }
-      });
-    });
-  }
-
-  const zeljeniFilm = id => {
-    axios(apiurl + "&i=" + id).then(({ data }) => {
-      let result = data;
-
-      console.log(result);
-
-      setState(prevState => {
-        return { ...prevState, selected: result }
-      });
-    });
-  }
 
   const odabraniFilm = id => {
     axios(apiurl + "&i=" + id).then(({ data }) => {
@@ -161,9 +108,12 @@ function App() {
 
       console.log(result);
       
+      const resula = JSON.parse(JSON.stringify(result));
+     
+      axios
+      .put(`http://localhost:5000/card`,resula)
+       });
       
-   
-       }).put(`http://localhost:5000/card`,id);
   }
   
   

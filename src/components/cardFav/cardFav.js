@@ -1,6 +1,5 @@
 import React from 'react'
 import Result from '../Result/Result'
-import PropTypes from 'prop-types';
 
 function cardFav({result},props) {
     return (
