@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 
 function Result({ result, openPopup }) {
+	
 	return (<div>
 		<div className={styles.result} onClick={() => openPopup(result.imdbID)}>
 			<img src={result.Poster} />

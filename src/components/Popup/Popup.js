@@ -15,6 +15,8 @@ function Popup({ selected, closePopup ,odabraniFilm },props) {
 			<div className={styles.content}>
 				<h2>{ selected.Title } <span>({ selected.Year })</span></h2>
 				<p className="rating">Rating: {selected.imdbRating}</p>
+				<p className="rating">Runtime: {selected.Runtime}</p>
+				<p className="rating">Actor: {selected.Actors}</p>
 				<div className="plot">
 					<img src={selected.Poster} />
 					<p>{selected.Plot}</p>

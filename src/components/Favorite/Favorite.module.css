@@ -1,9 +1,9 @@
-.results {
+.favorites {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 0px -15px;
 }
-.results  {
+.favorites  {
 	width: 33.333%;
 	min-width: 250px;
 	padding: 15px;
@@ -12,12 +12,12 @@
 	cursor: pointer;
 }
 
-.results  img {
+.favorites  img {
 	display: block;
 	width: 100%;
 }
 
-.results h3 {
+.favorites h3 {
 	color: #FFF;
 	font-size: 20px;
 	font-weight: 600;
@@ -27,7 +27,7 @@
 	transition: 0.4s ease-out;
 }
 
-.results:hover h3 {
+.favorites:hover h3 {
 	background: #FFF;
 	color: #223343;
 }

@@ -7,6 +7,8 @@ import Results from '../Results/Results'
 import Popup from '../Popup/Popup';
 import DropDown from '../DropDown/DropDown';
 import { connect } from 'react-redux';
+import { action } from '../../utils/action-helpers';
+import Favorite from '../Favorite/Favorite';
 
 
 
@@ -17,21 +19,22 @@ function App() {
     results: [],
     result:[],
     favorites: [
-      {
-        "Title":"Guardians of the Galaxy Vol. 2",
-        "Poster":"https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"   
-      }
+      
     ],
     selected: {}
     
     
   });
+  const [error, setError] = useState(null);
   const apiurl = "http://www.omdbapi.com/?apikey=dfe6d885";
 
   const search = (e) => {
     if (e.key === "Enter") {
       axios(apiurl + "&s=" + state.s).then(({ data }) => {
         let results = data.Search;
+        if(!results){
+          setError(true)
+        }
 
         setState(prevState => {
           return { ...prevState, results: results }
@@ -84,6 +87,16 @@ function App() {
   });
   };
 
+  const sortByRunTime = ({Result}) => {
+    
+    const results = [].concat(state.results)
+    results.sort((a,b) => a.Runtime > b.Runtime ? 1: -1).map(result =>(
+  <div key={result.imdbID}>result={result}</div>))
+  setState(prevState => {
+    return { ...prevState, results: results }
+  });
+  };
+
   const sortByDate = ({Result}) => {
     
     const results = [].concat(state.results)
@@ -107,30 +120,29 @@ function App() {
       let result = data;
 
       console.log(result);
+     state.favorites.push(result)
       
-      const resula = JSON.parse(JSON.stringify(result));
-     
-      axios
-      .put(`http://localhost:5000/card`,resula)
-       });
+    });
       
   }
-  
-  
-
- 
-  
+  const removeItem= (e)=> {
+    var array = [...state.favorites]; 
+    var index = state.favorites.length;
+    if (index !== -1) {
+      array.splice(index, 1);
+      setState({favorites: array});
+    }
+    console.log(state.favorites);
+  }
     return (
-       
+      
       <div className={styles.container}>
         <Header/>
-        <div>
-        
-        </div>
         <div className={styles.containerFlex}>
-          <Sidebar   handleInput={handleInput} search={search} />
+       
+          <Sidebar removeItem={removeItem} favorites={state.favorites} handleInput={handleInput} search={search} />
           <Results results={state.results}  openPopup={openPopup} odabraniFilm={odabraniFilm}  />
-          <DropDown onClearArray={onClearArray} sortByRating={sortByRating} sortByDate={sortByDate} />
+          <DropDown onClearArray={onClearArray} sortByRunTime={sortByRunTime} sortByRating={sortByRating} sortByDate={sortByDate} />
           <div >
           
           </div>
